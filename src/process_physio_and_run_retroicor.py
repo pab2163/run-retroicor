@@ -74,7 +74,7 @@ def process_physio(physio_path, output_dir, fs):
     rt = rt - np.mean(rt)
     max_freq = extract_max_freq(rt, fs)
     if (max_freq > 0.15) and (max_freq < 1):
-        filtered = filter_frequency(rt)
+        filtered = filter_frequency(rt, fs)
         # extract_max_freq(filtered, 62.5)
         return write_output(output_dir, physio_path, filtered)
     else:
