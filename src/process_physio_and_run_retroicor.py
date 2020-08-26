@@ -55,8 +55,8 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
     return y
 
 
-def filter_frequency(data):
-    return butter_bandpass_filter(data, 0.05, 1, 62.5)
+def filter_frequency(data, fs):
+    return butter_bandpass_filter(data, 0.05, 1, fs)
 
 
 def write_output(output_folder, physio_path, data):
@@ -68,11 +68,11 @@ def write_output(output_folder, physio_path, data):
     return str(out / outname)
 
 
-def process_physio(physio_path, output_dir):
-    rt = read_respiratory_trace(physio_path)
+def process_physio(physio_path, output_dir, fs):
+    rt = read_respiratory_trace(physio_path, column=2)
     # demean rt
     rt = rt - np.mean(rt)
-    max_freq = extract_max_freq(rt, 62.5)
+    max_freq = extract_max_freq(rt, fs)
     if (max_freq > 0.15) and (max_freq < 1):
         filtered = filter_frequency(rt)
         # extract_max_freq(filtered, 62.5)
@@ -103,8 +103,8 @@ def run_cmd(cmd):
     print("Elapsed time: {:.2f}s".format(time.time() - start_time))
 
 
-def run(nifti_image, physio_path, output_dir):
-    processed_physio_path = process_physio(physio_path, output_dir)
+def run(nifti_image, physio_path, output_dir, fs):
+    processed_physio_path = process_physio(physio_path, output_dir, fs)
     if processed_physio_path is None:
         print("{}: bad physio file".format(physio_path))
         return
