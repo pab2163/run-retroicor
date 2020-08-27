@@ -109,7 +109,7 @@ def run_cmd(cmd):
     print("Elapsed time: {:.2f}s".format(time.time() - start_time))
 
 
-def run(nifti_image, physio_path, output_dir, fs):
+def run_r(nifti_image, physio_path, output_dir, fs):
     processed_physio_path = process_physio_no_filter(physio_path, output_dir, fs)
     if processed_physio_path is None:
         print("{}: bad physio file".format(physio_path))
