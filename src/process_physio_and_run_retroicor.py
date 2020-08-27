@@ -79,6 +79,12 @@ def process_physio(physio_path, output_dir, fs):
         return write_output(output_dir, physio_path, filtered)
     else:
         return None
+    
+def process_physio_no_filter(physio_path, output_dir, fs):
+    rt = read_respiratory_trace(physio_path, column=2)
+    # demean rt
+    rt = rt - np.mean(rt)
+    return write_output(output_dir, physio_path, filtered)
 
 
 def make_retroicor_string(nifti_image, physio_path, output_dir):
@@ -104,7 +110,7 @@ def run_cmd(cmd):
 
 
 def run(nifti_image, physio_path, output_dir, fs):
-    processed_physio_path = process_physio(physio_path, output_dir, fs)
+    processed_physio_path = process_physio_no_filter(physio_path, output_dir, fs)
     if processed_physio_path is None:
         print("{}: bad physio file".format(physio_path))
         return
