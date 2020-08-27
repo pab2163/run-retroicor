@@ -84,7 +84,7 @@ def process_physio_no_filter(physio_path, output_dir, fs):
     rt = read_respiratory_trace(physio_path, column=2)
     # demean rt
     rt = rt - np.mean(rt)
-    return write_output(output_dir, physio_path, filtered)
+    return write_output(output_dir, physio_path, rt)
 
 
 def make_retroicor_string(nifti_image, physio_path, output_dir):
