@@ -56,7 +56,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
 
 
 def filter_frequency(data, fs):
-    return butter_bandpass_filter(data, 0.05, 1, fs)
+    return butter_bandpass_filter(data, 0.075, 1, fs)
 
 
 def write_output(output_folder, physio_path, data):
@@ -110,7 +110,7 @@ def run_cmd(cmd):
 
 
 def run_r(nifti_image, physio_path, output_dir, fs):
-    processed_physio_path = process_physio_no_filter(physio_path, output_dir, fs)
+    processed_physio_path = process_physio(physio_path, output_dir, fs)
     if processed_physio_path is None:
         print("{}: bad physio file".format(physio_path))
         return

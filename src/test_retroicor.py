@@ -4,7 +4,10 @@ import glob
 
 os.system('mkdir /danl/Collaborations/studyforrest/motion_retroicor')
 
-subs = glob.glob('/danl/Collaborations/studyforrest/bids_raw/sub-*')
+#subs = glob.glob('/danl/Collaborations/studyforrest/bids_raw/sub-*')
+#subs = ['sub-20', 'sub-03', 'sub-04']
+#subs = ['sub-06', 'sub-09', 'sub-10', 'sub-14']
+subs = ['sub-15', 'sub-17', 'sub-18', 'sub-19']
 
 
 for sub in subs:
