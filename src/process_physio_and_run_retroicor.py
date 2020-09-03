@@ -88,7 +88,7 @@ def process_physio_no_filter(physio_path, output_dir, fs):
 
 
 def make_retroicor_string(nifti_image, physio_path, output_dir):
-    new_nifti_name = "{}_retroicor.nii.gz".format(
+    new_nifti_name = "{}_retroicor_filt.nii.gz".format(
         os.path.basename(nifti_image).split(".")[0]
     )
     output_dir = Path(output_dir).resolve()
