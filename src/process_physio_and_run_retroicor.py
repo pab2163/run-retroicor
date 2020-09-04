@@ -41,7 +41,7 @@ def extract_max_freq(resp_trace, sampling_rate):
     return frequency[np.argmax(power_spectrum)]
 
 
-def butter_bandpass(lowcut, highcut, fs, order=3):
+def butter_bandpass(lowcut, highcut, fs, order):
     nyq = 0.5 * fs
     low = lowcut / nyq
     high = highcut / nyq
@@ -49,14 +49,14 @@ def butter_bandpass(lowcut, highcut, fs, order=3):
     return b, a
 
 
-def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
+def butter_bandpass_filter(data, lowcut, highcut, fs, order):
     b, a = butter_bandpass(lowcut, highcut, fs, order=order)
     y = lfilter(b, a, data)
     return y
 
 
 def filter_frequency(data, fs):
-    return butter_bandpass_filter(data, 0.075, 1, fs)
+    return butter_bandpass_filter(data, 0.075, 1, fs, order = 3)
 
 
 def write_output(output_folder, physio_path, data):
