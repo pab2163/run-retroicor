@@ -56,7 +56,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order):
 
 
 def filter_frequency(data, fs):
-    return butter_bandpass_filter(data, 0.075, 1, fs, order = 3)
+    return butter_bandpass_filter(data, 0.05, 1, fs, order = 2)
 
 
 def write_output(output_folder, physio_path, data):

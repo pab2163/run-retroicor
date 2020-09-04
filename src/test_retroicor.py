@@ -4,10 +4,8 @@ import glob
 
 os.system('mkdir /danl/Collaborations/studyforrest/motion_retroicor')
 
-#subs = glob.glob('/danl/Collaborations/studyforrest/bids_raw/sub-*')
-#subs = ['sub-20', 'sub-03', 'sub-04']
-#subs = ['sub-06', 'sub-09', 'sub-10', 'sub-14']
-subs = ['sub-15', 'sub-17', 'sub-18', 'sub-19']
+subs = glob.glob('/danl/Collaborations/studyforrest/bids_raw/sub-*')
+subs.remove('/danl/Collaborations/studyforrest/bids_raw/sub-01') 
 
 
 for sub in subs:
@@ -28,5 +26,10 @@ for sub in subs:
 		os.system('rm volreg*')
 
 		# 3dvolreg retroicor 
-		os.system(f'3dvolreg -1Dfile /danl/Collaborations/studyforrest/motion_retroicor/motion_{subid}_run_{run}_retroicor.1D {output_dir}/{subid}_ses-movie_task-movie_run-{str(run)}_bold_retroicor.nii.gz')
+		#os.system(f'3dvolreg -1Dfile /danl/Collaborations/studyforrest/motion_retroicor/motion_{subid}_run_{run}_retroicor.1D {output_dir}/{subid}_ses-movie_task-movie_run-{str(run)}_bold_retroicor.nii.gz')
+		#os.system('rm volreg*')
+
+
+		# 3dvolreg retroicor (filtered)
+		os.system(f'3dvolreg -1Dfile /danl/Collaborations/studyforrest/motion_retroicor/motion_{subid}_run_{run}_retroicor_filt.1D {output_dir}/{subid}_ses-movie_task-movie_run-{str(run)}_bold_retroicor_filt.nii.gz')
 		os.system('rm volreg*')
